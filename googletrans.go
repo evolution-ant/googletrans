@@ -172,6 +172,13 @@ func (t *Translator) do(params TranslateParams) (rawTranslated, error) {
 
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
+		var buffer []byte
+		buffer = make([]byte, 512)
+		resp, err = t.clt.Do(req)
+		resp.Body.Read(buffer)
+		data = buffer
+	}
+	if err != nil {
 		return emptyRawTranslated, err
 	}
 	resp.Body.Close()
