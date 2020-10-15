@@ -1,7 +1,7 @@
 # Googletrans
 [![language](https://img.shields.io/badge/language-Golang-blue)](https://golang.org/)
-[![Documentation](https://godoc.org/github.com/mind1949/googletrans?status.svg)](https://godoc.org/github.com/mind1949/googletrans)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mind1949/googletrans)](https://goreportcard.com/report/github.com/mind1949/googletrans)
+[![Documentation](https://godoc.org/github.com/evolution-ant/googletrans?status.svg)](https://godoc.org/github.com/evolution-ant/googletrans)
+[![Go Report Card](https://goreportcard.com/badge/github.com/evolution-ant/googletrans)](https://goreportcard.com/report/github.com/evolution-ant/googletrans)
 
 G文⚡️: Concurrency-safe, free and unlimited golang library that implemented Google Translate API.
 
@@ -15,7 +15,7 @@ Inspired by [py-googletrans](https://github.com/ssut/py-googletrans).
 # Installation
 
 ```
-go get -u github.com/mind1949/googletrans
+go get -u github.com/evolution-ant/googletrans
 ```
 
 # Usage
@@ -27,7 +27,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/mind1949/googletrans"
+	"github.com/evolution-ant/googletrans"
 )
 
 func main() {
@@ -51,7 +51,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/mind1949/googletrans"
+	"github.com/evolution-ant/googletrans"
 	"golang.org/x/text/language"
 )
 
@@ -77,7 +77,7 @@ func main() {
 ```golang
 package main
 
-import "github.com/mind1949/googletrans"
+import "github.com/evolution-ant/googletrans"
 
 func main() {
 	serviceURLs := []string{
