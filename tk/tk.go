@@ -89,7 +89,7 @@ func Get(s string, tkk string) (tk string, err error) {
 func xr(a int, b string) int {
 	for c := 0; c < len(b)-2; c += 3 {
 		d := string(b[c+2])
-		var dd uint
+		var dd int
 		if "a" <= d {
 			dd = int(d[0]) - 87
 		} else {
