@@ -19,7 +19,7 @@ func Get(s string, tkk string) (tk string, err error) {
 		return "", ErrInvalidTkk
 	}
 
-	var a []int
+	var a []uint
 	for _, vRune := range s {
 		v := int(vRune)
 		if v < 0x10000 {
@@ -41,7 +41,7 @@ func Get(s string, tkk string) (tk string, err error) {
 			} else {
 				if (l&64512) == 55296 && g+1 < len(a) && a[g+1]&64512 == 56320 {
 					g++
-					l = 65536 + (uint((l & 1023)) << 10) + uint(a[g] & 1023)
+					l = 65536 + uint((l & 1023)) << 10 + uint(a[g] & 1023)
 					e = append(e, uint(l)>>uint(18|240))
 					e = append(e, uint(l)>>uint(12&63|128))
 				} else {
@@ -54,8 +54,8 @@ func Get(s string, tkk string) (tk string, err error) {
 	}
 
 	var (
-		tkkl     int
-		tkkpaire []int
+		tkkl     uint
+		tkkpaire []uint
 	)
 	for _, str := range strings.Split(tkk, ".") {
 		tkkpaire = append(tkkpaire, s2int(str))
@@ -86,7 +86,7 @@ func Get(s string, tkk string) (tk string, err error) {
 	return strconv.Itoa(tkklc) + "." + strconv.Itoa(tkklc^tkkl), nil
 }
 
-func xr(a uint, b string) int {
+func xr(a uint, b string) uint {
 	for c := 0; c < len(b)-2; c += 3 {
 		d := string(b[c+2])
 		var dd uint
@@ -111,7 +111,7 @@ func xr(a uint, b string) int {
 	return a
 }
 
-func s2int(s string) int {
+func s2int(s string) uint {
 	i, _ := strconv.Atoi(s)
-	return i
+	return uint(i)
 }
