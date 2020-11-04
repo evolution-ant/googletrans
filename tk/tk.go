@@ -37,17 +37,17 @@ func Get(s string, tkk string) (tk string, err error) {
 			e = append(e, l)
 		} else {
 			if l < 2048 {
-				e = append(e, l>>6|192)
+				e = append(e, uint(l)>>uint(6|192))
 			} else {
 				if (l&64512) == 55296 && g+1 < len(a) && a[g+1]&64512 == 56320 {
 					g++
-					l = 65536 + ((l & 1023) << 10) + (a[g] & 1023)
-					e = append(e, l>>18|240)
-					e = append(e, l>>12&63|128)
+					l = 65536 + (uint((l & 1023)) << 10) + (a[g] & 1023)
+					e = append(e, uint(l)>>uint(18|240))
+					e = append(e, uint(l)>>uint(12&63|128))
 				} else {
-					e = append(e, l>>12|224)
+					e = append(e, uint(l)>>uint(12|224))
 				}
-				e = append(e, l>>6&63|128)
+				e = append(e, uint(l)>>uint(6&63|128))
 			}
 			e = append(e, l&63|128)
 		}
@@ -97,7 +97,7 @@ func xr(a int, b string) int {
 		}
 
 		if "+" == string(b[c+1]) {
-			dd = (a % 0x100000000) >> dd
+			dd = uint((a % 0x100000000)) >> uint(dd)
 		} else {
 			dd = a << dd
 		}
