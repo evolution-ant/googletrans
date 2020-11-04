@@ -9,7 +9,6 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
-	"sync"
 	"text/scanner"
 	"time"
 
@@ -23,7 +22,6 @@ const (
 )
 
 var (
-	lock               sync.Mutex
 	emptyTranlated     = Translated{}
 	emptyDetected      = Detected{}
 	emptyRawTranslated = rawTranslated{}
@@ -106,13 +104,11 @@ func New(serviceURLs ...string) *Translator {
 
 // Translate translates text from src language to dest language
 func (t *Translator) Translate(params TranslateParams) (Translated, error) {
-	lock.Lock()
 	if params.Src == "" {
 		params.Src = "auto"
 	}
 
 	transData, err := t.do(params)
-	lock.Unlock()
 	if err != nil {
 		return emptyTranlated, err
 	}
