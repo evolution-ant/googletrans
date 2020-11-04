@@ -21,7 +21,7 @@ func Get(s string, tkk string) (tk string, err error) {
 
 	var a []uint
 	for _, vRune := range s {
-		v := int(vRune)
+		v := uint(vRune)
 		if v < 0x10000 {
 			a = append(a, v)
 		} else {
@@ -83,7 +83,7 @@ func Get(s string, tkk string) (tk string, err error) {
 
 	tkklc %= 1000000
 
-	return strconv.Itoa(tkklc) + "." + strconv.Itoa(tkklc^tkkl), nil
+	return strconv.Itoa(int(tkklc)) + "." + strconv.Itoa(int(tkklc^tkkl)), nil
 }
 
 func xr(a uint, b string) uint {
