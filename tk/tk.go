@@ -30,7 +30,7 @@ func Get(s string, tkk string) (tk string, err error) {
 		}
 	}
 
-	var e []int
+	var e []uint
 	for g := 0; g < len(a); g++ {
 		l := a[g]
 		if l < 128 {
@@ -41,7 +41,7 @@ func Get(s string, tkk string) (tk string, err error) {
 			} else {
 				if (l&64512) == 55296 && g+1 < len(a) && a[g+1]&64512 == 56320 {
 					g++
-					l = 65536 + (uint((l & 1023)) << 10) + (a[g] & 1023)
+					l = 65536 + (uint((l & 1023)) << 10) + uint(a[g] & 1023)
 					e = append(e, uint(l)>>uint(18|240))
 					e = append(e, uint(l)>>uint(12&63|128))
 				} else {
@@ -86,14 +86,14 @@ func Get(s string, tkk string) (tk string, err error) {
 	return strconv.Itoa(tkklc) + "." + strconv.Itoa(tkklc^tkkl), nil
 }
 
-func xr(a int, b string) int {
+func xr(a uint, b string) int {
 	for c := 0; c < len(b)-2; c += 3 {
 		d := string(b[c+2])
-		var dd int
+		var dd uint
 		if "a" <= d {
-			dd = int(d[0]) - 87
+			dd = uint(int(d[0]) - 87)
 		} else {
-			dd = s2int(d)
+			dd = uint(s2int(d))
 		}
 
 		if "+" == string(b[c+1]) {
